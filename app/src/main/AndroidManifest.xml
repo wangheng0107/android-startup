@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.rousetime.sample">
+
+    <application
+        android:name="com.rousetime.sample.SampleApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.rousetime.sample.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".SampleMoreActivity" />
+
+        <activity android:name=".SampleCommonActivity" />
+
+        <service
+            android:name=".MultipleProcessService"
+            android:process=":multiple.process.service" />
+
+        <provider
+            android:name="com.rousetime.android_startup.provider.StartupProvider"
+            android:authorities="${applicationId}.android_startup"
+            android:exported="false">
+
+            <meta-data
+                android:name="com.rousetime.sample.startup.SampleStartupProviderConfig"
+                android:value="android.startup.provider.config" />
+
+            <meta-data
+                android:name="com.rousetime.sample.startup.SampleFourthStartup"
+                android:value="android.startup" />
+
+        </provider>
+
+        <provider
+            android:name=".provider.MultipleProcessStartupProvider"
+            android:authorities="${applicationId}.android_startup.multiple"
+            android:exported="false"
+            android:process=":multiple.provider">
+
+            <meta-data
+                android:name="com.rousetime.sample.startup.SampleStartupProviderConfig"
+                android:value="android.startup.provider.config" />
+
+            <meta-data
+                android:name="com.rousetime.sample.startup.multiple.SampleMultipleSecondStartup"
+                android:value="android.startup" />
+
+        </provider>
+
+    </application>
+
+</manifest>
